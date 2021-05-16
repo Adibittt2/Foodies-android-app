@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Foodies</string>
+    <string name="notification">notification</string>
+    <string name="search">search</string>
+    <string name="home">home</string>
+    <string name="cart">cart</string>
+    <string name="todo">TODO</string>
+
+</resources>

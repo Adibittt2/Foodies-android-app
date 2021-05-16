@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Cake">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            tools:ignore="MissingConstraints">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="20dp"
+                    android:layout_margin="5dp"
+                    app:contentPadding="20dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="30dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/image1"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:scaleType="fitCenter"/>
+
+                        <TextView
+                            android:id="@+id/flavour1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColor="@android:color/black"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/old_price1.1"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="right" />
+
+                            <TextView
+                                android:id="@+id/old_price1.2"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"/>
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:id="@+id/radiogroup1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center">
+
+                            <RadioButton
+                                android:id="@+id/radioButton1.1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@android:color/holo_red_dark"
+                                />
+
+                            <RadioButton
+                                android:id="@+id/radioButton1.2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@android:color/holo_red_dark"
+                                />
+
+                        </RadioGroup>
+
+                        <Button
+                            android:id="@+id/button1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Buy Now"
+                            android:background="@android:color/holo_red_dark" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="20dp"
+                    android:layout_margin="5dp"
+                    app:contentPadding="20dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="30dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/image2"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:scaleType="fitCenter"/>
+
+                        <TextView
+                            android:id="@+id/flavour2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColor="@android:color/black"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/old_price2.1"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="right" />
+
+                            <TextView
+                                android:id="@+id/old_price2.2"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"/>
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:id="@+id/radiogroup2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center">
+
+                            <RadioButton
+                                android:id="@+id/radioButton2.1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@android:color/holo_red_light"/>
+
+                            <RadioButton
+                                android:id="@+id/radioButton2.2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@android:color/holo_red_light"/>
+
+                        </RadioGroup>
+
+                        <Button
+                            android:id="@+id/button2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Buy Now"
+                            android:background="@android:color/holo_red_dark"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="20dp"
+                    android:layout_margin="5dp"
+                    app:contentPadding="20dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="30dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/image3"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:scaleType="fitCenter"/>
+                        <TextView
+                            android:id="@+id/flavour3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColor="@android:color/black"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/old_price3.1"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:layout_above="@id/radiogroup1"/>
+
+                            <TextView
+                                android:id="@+id/old_price3.2"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"/>
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:id="@+id/radiogroup3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center">
+
+                            <RadioButton
+                                android:id="@+id/radioButton3.1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@android:color/holo_red_light"/>
+
+                            <RadioButton
+                                android:id="@+id/radioButton3.2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@android:color/holo_red_light"/>
+
+                        </RadioGroup>
+
+                        <Button
+                            android:id="@+id/button3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Buy Now"
+                            android:background="@android:color/holo_red_dark"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="20dp"
+                    android:layout_margin="5dp"
+                    app:contentPadding="20dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="30dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/image4"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:scaleType="fitCenter"/>
+                        <TextView
+                            android:id="@+id/flavour4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColor="@android:color/black"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/old_price4.1"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:layout_above="@id/radiogroup1"/>
+
+                            <TextView
+                                android:id="@+id/old_price4.2"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"/>
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:id="@+id/radiogroup4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center">
+
+                            <RadioButton
+                                android:id="@+id/radioButton4.1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@android:color/holo_red_light"/>
+
+                            <RadioButton
+                                android:id="@+id/radioButton4.2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@android:color/holo_red_light"/>
+
+                        </RadioGroup>
+
+                        <Button
+                            android:id="@+id/button4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Buy Now"
+                            android:background="@android:color/holo_red_dark"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="20dp"
+                    android:layout_margin="5dp"
+                    app:contentPadding="20dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="30dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/image5"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:scaleType="fitCenter"/>
+                        <TextView
+                            android:id="@+id/flavour5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColor="@android:color/black"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/old_price5.1"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:layout_above="@id/radiogroup1"/>
+
+                            <TextView
+                                android:id="@+id/old_price5.2"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"/>
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:id="@+id/radiogroup5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center">
+
+                            <RadioButton
+                                android:id="@+id/radioButton5.1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@android:color/holo_red_light"/>
+
+                            <RadioButton
+                                android:id="@+id/radioButton5.2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@android:color/holo_red_light"/>
+
+                        </RadioGroup>
+
+                        <Button
+                            android:id="@+id/button5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Buy Now"
+                            android:background="@android:color/holo_red_dark"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="20dp"
+                    android:layout_margin="5dp"
+                    app:contentPadding="20dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="30dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/image6"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:scaleType="fitCenter"/>
+                        <TextView
+                            android:id="@+id/flavour6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColor="@android:color/black"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/old_price6"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textSize="20dp"
+                                android:layout_above="@id/price6"/>
+
+
+                            <TextView
+                                android:id="@+id/price6"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textSize="20dp"/>
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/button6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Buy Now"
+                            android:background="@android:color/holo_red_dark"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <include layout="@layout/floating_action_button"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

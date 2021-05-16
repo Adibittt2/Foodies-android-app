@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:layout_insetEdge="bottom"
+    android:fadingEdgeLength="10dp">
+
+    <TextView
+        android:id="@+id/card_foodies_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_toStartOf="@+id/card_foodies_image"/>
+
+    <ImageView
+        android:id="@+id/card_foodies_image"
+        android:src = "@mipmap/foodies_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true" />
+
+
+    <TextView
+        android:id="@+id/card_foodies_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:text="foodies_name"
+        android:layout_below="@+id/card_foodies_image"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/card_foodies_description"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="description"
+        android:layout_below="@id/card_foodies_name"/>
+
+    <TextView
+        android:id="@+id/card_foodies_old_price"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="old_price"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/card_foodies_description"/>
+
+
+
+
+    <TextView
+        android:id="@+id/card_foodies_new_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="new_price"
+        android:textSize="20dp"
+        android:textColor="@android:color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/card_foodies_old_price"/>
+
+    <TextView
+        android:id="@+id/card_foodies_discount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="discount"
+        android:gravity="center"
+        android:layout_marginLeft="5dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_toEndOf="@+id/card_foodies_new_price"
+        android:layout_below="@+id/card_foodies_old_price"/>
+
+
+    <Button
+        android:id="@+id/card_foodies_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add To Cart"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@color/colorPrimary"
+        android:layout_marginHorizontal="10dp"
+        android:layout_below="@+id/card_foodies_new_price"/>
+
+
+</RelativeLayout>
