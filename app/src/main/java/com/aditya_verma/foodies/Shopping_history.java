@@ -10,11 +10,6 @@ import android.widget.Button;
 
 import com.google.logging.type.HttpRequest;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,15 +21,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.concurrent.ExecutionException;
 
-import kong.unirest.GenericType;
-import kong.unirest.HttpResponse;
-import kong.unirest.ObjectMapper;
-import kong.unirest.Unirest;
-
-
 import java.io.IOException;
-
-
 
 public class Shopping_history extends AppCompatActivity {
 

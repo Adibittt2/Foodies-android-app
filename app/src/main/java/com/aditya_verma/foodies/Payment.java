@@ -529,9 +529,6 @@ public class Payment extends AppCompatActivity implements PaymentStatusListener 
             //All your UI operation can be performed here
             System.out.println(s);
 
-
-
-
         }
     }
 
