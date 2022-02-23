@@ -17,28 +17,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Feedback"></activity>
-        <activity
-            android:name=".SplashActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
+        <activity android:name=".MainActivity2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Foodies" />
-        <activity android:name=".Cloud_Functions" />
-        <activity android:name=".Error_Activity" />
+        <activity
+            android:name=".Order_process"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Jayka"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Shop_list"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Feedback"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+
+        </activity>
+        <activity
+            android:name=".Foodies"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Error_Activity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Shopping_history"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Google_pay"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Bill"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Payment"
@@ -47,34 +58,10 @@
             android:name=".Address"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Paasta"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Add_to_Cart"
             android:screenOrientation="portrait" />
         <activity
             android:name=".CartActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Roll_Momo"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Burger"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Chilli_and_Manchurian"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Macroni"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Chowmin"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Pizza"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Fast_food"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Cake"
@@ -84,15 +71,9 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
 
+        <receiver android:name=".MyBroadcastReceiver" />
+
         <service android:name=".FirebaseMessageReceiver">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-        <service
-            android:name=".FirebaseMessagingService"
-            android:permission="TODO"
-            tools:ignore="ExportedService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

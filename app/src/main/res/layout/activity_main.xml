@@ -29,20 +29,20 @@
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/slider"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="160dp"
         android:layout_below="@+id/appbar"
-        android:layout_marginBottom="20dp"
-        app:sliderAnimationDuration="600"
+        android:layout_marginBottom="5dp"
+        app:sliderAnimationDuration="500"
         app:sliderAutoCycleDirection="back_and_forth"
-        app:sliderIndicatorAnimationDuration="600"
+        app:sliderIndicatorAnimationDuration="500"
         app:sliderIndicatorEnabled="false"
         app:sliderIndicatorGravity="center_horizontal|bottom"
         app:sliderIndicatorMargin="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         app:layout_constraintTop_toBottomOf="@id/appbar"
         app:sliderIndicatorOrientation="horizontal"
         app:sliderIndicatorPadding="3dp"
-        app:sliderIndicatorRadius="2dp"
+        app:sliderIndicatorRadius="5dp"
         app:sliderIndicatorSelectedColor="#5A5A5A"
         app:sliderIndicatorUnselectedColor="#FFF"
         app:sliderScrollTimeInSec="1"/>
@@ -57,74 +57,104 @@
         android:layout_below="@+id/slider">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="20dp"
-        tools:ignore="MissingConstraints">
-
-    <ImageButton
-        android:id="@+id/main_foodies"
-        android:layout_width="320dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/slider"
-        app:srcCompat="@mipmap/foodies_logo"
-        android:contentDescription="@string/todo"
-        android:scaleType="fitXY"
-        />
+        <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+            android:id="@+id/table_layout"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*"
+            android:layout_marginHorizontal="5dp">
 
 
-    <ImageButton
-        android:id="@+id/main_cakery"
-        android:layout_width="320dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageButton1"
-        app:srcCompat="@mipmap/logo"
-        tools:ignore="ContentDescription"
-        android:scaleType="fitXY"
-        />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="15dp">
 
-        <ImageButton
-            android:id="@+id/imageButton3"
-            android:layout_width="320dp"
-            android:layout_height="200dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageButton1"
-            app:srcCompat="@drawable/ic_launcher_foreground"
-            tools:ignore="ContentDescription"
-            android:scaleType="fitXY"
-            />
+                <ImageButton
+                    android:id="@+id/main_foodies"
+                    android:layout_width="50pt"
+                    android:layout_height="200dp"
+                    app:srcCompat="@mipmap/maska_chaska"
+                    android:scaleType="fitXY"
+                    />
+
+                <ImageButton
+                    android:id="@+id/food_circle"
+                    android:layout_width="50pt"
+                    android:layout_height="200dp"
+                    app:srcCompat="@mipmap/food_circle"
+                    android:scaleType="fitXY" />
+
+            </TableRow>
 
 
 
-</LinearLayout>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="15dp">
 
+                <ImageButton
+                    android:id="@+id/main_jayka"
+                    android:layout_width="50pt"
+                    android:layout_height="200dp"
+                    app:srcCompat="@mipmap/jayka"
+                    android:scaleType="fitXY"
+                    />
+
+
+                <ImageButton
+                    android:id="@+id/shubhraj"
+                    android:layout_width="50pt"
+                    android:layout_height="200dp"
+                    app:srcCompat="@mipmap/shubhraj_icon"
+                    android:scaleType="fitXY" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="15dp">
+
+                <ImageButton
+                    android:id="@+id/The_cake_corner"
+                    android:layout_width="50pt"
+                    android:layout_height="200dp"
+                    app:srcCompat="@mipmap/tcc_logo"
+                    android:scaleType="fitXY"
+                    />
+
+
+                <ImageButton
+                    android:id="@+id/pizza_bazaar"
+                    android:layout_width="50pt"
+                    android:layout_height="200dp"
+                    app:srcCompat="@mipmap/pizza_bazaar_logo"
+                    android:scaleType="fitXY" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="15dp">
+
+
+                <ImageButton
+                    android:id="@+id/main_cakery"
+                    android:layout_width="50pt"
+                    android:layout_height="200dp"
+                    app:srcCompat="@mipmap/logo"
+                    android:scaleType="fitXY" />
+
+            </TableRow>
+
+
+
+
+
+        </TableLayout>
 
     </ScrollView>
-
-    <include layout="@layout/progress_bar"/>
 
 
 </RelativeLayout>

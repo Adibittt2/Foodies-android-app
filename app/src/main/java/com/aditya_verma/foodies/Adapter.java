@@ -1,6 +1,7 @@
 package com.aditya_verma.foodies;
 
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -38,7 +39,8 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder>  {
 
     private Context context;
     private ArrayList<Model> listContacts;
-    private List<String> data1 = new ArrayList<String>();
+    private ArrayList<Integer> data1 = new ArrayList<Integer>();
+    private int adapter_sum = 0;
 
 
     private Database meradatabase;
@@ -70,22 +72,29 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder>  {
 
        holder.price_for_each.setText("Rs"+ alpha);
 
-       data1.add(String.valueOf(alpha));
+//       data1.add(alpha);
+//
+//       int adapter_sum = 0;
+//        for(int i =0; i<data1.size(); i++) {
+//
+//            int product = data1.get(i);
+//
+//            adapter_sum = adapter_sum + product;
+//
+//            CartActivity.total_value.setText(String.valueOf(adapter_sum));
+//            CartActivity.total_product_price.setText("Rs."+ adapter_sum);
+//
+//        }
 
-       int adapter_sum = 0;
-        for(int i =0; i<data1.size(); i++) {
 
-            String product = data1.get(i);
-
-            adapter_sum = adapter_sum + Integer.parseInt(product);
+            adapter_sum = adapter_sum + alpha;
 
             CartActivity.total_value.setText(String.valueOf(adapter_sum));
-            CartActivity.total_product_price.setText("Rs."+ adapter_sum);
+            CartActivity.total_product_price.setText("Rs." + adapter_sum);
 
 
-        }
 
-              byte[] apple = model.getImage();
+        byte[] apple = model.getImage();
         Bitmap bi = BitmapFactory.decodeByteArray(apple,0,apple.length);
         holder.image.setImageBitmap(bi);
 
@@ -96,6 +105,7 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder>  {
                 //delete row from database
 
                 meradatabase.deleteModel(model.getId());
+                meradatabase.deleteModelHistory(model.getId());
 
                 //refresh the activity page.
                 ((Activity) context).finish();

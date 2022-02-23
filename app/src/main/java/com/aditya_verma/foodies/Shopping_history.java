@@ -1,53 +1,70 @@
 package com.aditya_verma.foodies;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
-import com.google.logging.type.HttpRequest;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.concurrent.ExecutionException;
-
-import java.io.IOException;
+import java.util.ArrayList;
 
 public class Shopping_history extends AppCompatActivity {
 
-    String msg = "Android : ";
-    private Button lichterkette1;
+   RecyclerView table_recyclerView;
+   Database history_database;
+    Adapter_history adapter_history;
+    public static ArrayList<Model> history_table_list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_history);
 
-        lichterkette1 = (Button) findViewById(R.id.send_sms_btn);
+        history_database = new Database(this);
 
-        lichterkette1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-
-        });
+        history_rec_view();
     }
 
+    public void history_rec_view(){
+        table_recyclerView = (RecyclerView) findViewById(R.id.history_rec_view);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true);
+        table_recyclerView.setLayoutManager(linearLayoutManager);
+        linearLayoutManager.setStackFromEnd(true);
+        table_recyclerView.setHasFixedSize(true);
+        history_database = new Database(this);
+        history_table_list = history_database.get_all_data_History();
 
+        if (history_table_list.size() > 0) {
+            table_recyclerView.setVisibility(View.VISIBLE);
+            adapter_history = new Adapter_history(this, history_table_list);
+            table_recyclerView.setAdapter(adapter_history);
 
+        } else {
+            table_recyclerView.setVisibility(View.GONE);
 
+          //  table_recyclerView.setTag("Empty");
+        }
+    }
+
+//    private void setRecview_table() {
+//        table_recyclerView = (RecyclerView) findViewById(R.id.table_recyclerview);
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true);
+//        table_recyclerView.setLayoutManager(linearLayoutManager);
+//        linearLayoutManager.setStackFromEnd(true);
+//        table_recyclerView.setHasFixedSize(true);
+//        payment_database = new Database(this);
+//        table_list = payment_database.get_all_data();
+//
+//        if (table_list.size() > 0) {
+//            table_recyclerView.setVisibility(View.VISIBLE);
+//            adapter_table_view = new Adapter_table_view(this, table_list);
+//            table_recyclerView.setAdapter(adapter_table_view);
+//
+//        } else {
+//            table_recyclerView.setVisibility(View.GONE);
+//        }
+//    }
 
 
 }

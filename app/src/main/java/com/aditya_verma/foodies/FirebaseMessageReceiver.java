@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import androidx.core.app.NotificationCompat;
@@ -34,6 +35,8 @@ public class FirebaseMessageReceiver extends FirebaseMessagingService {
 						remoteMessage.getData().get("message"));
 		}*/
 
+        Log.d("ffff", "this is  " + remoteMessage.getFrom());
+
         // Second case when notification payload is
         // received.
         if (remoteMessage.getNotification() != null) {
@@ -43,7 +46,15 @@ public class FirebaseMessageReceiver extends FirebaseMessagingService {
             showNotification(
                     remoteMessage.getNotification().getTitle(),
                     remoteMessage.getNotification().getBody());
+
+
+            Intent broadcast = new Intent();
+            broadcast.setAction("OPEN_NEW_ACTIVITY");
+            sendBroadcast(broadcast);
+
+
         }
+
     }
 
     // Method to get the custom Design for the display of
@@ -89,7 +100,7 @@ public class FirebaseMessageReceiver extends FirebaseMessagingService {
                 .setAutoCancel(true)
                 .setVibrate(new long[]{1000, 1000, 1000,
                         1000, 1000})
-                .setOnlyAlertOnce(true)
+//                .setOnlyAlertOnce(true)
                 .setContentIntent(pendingIntent);
 
         // A customized design for the notification can be
@@ -116,4 +127,6 @@ public class FirebaseMessageReceiver extends FirebaseMessagingService {
 
         notificationManager.notify(0, builder.build());
     }
+
+
 }

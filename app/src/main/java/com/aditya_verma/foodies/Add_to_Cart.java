@@ -1,4 +1,3 @@
-
 package com.aditya_verma.foodies;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +34,8 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.ByteArrayOutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static android.R.layout.simple_list_item_1;
@@ -46,6 +48,8 @@ public class Add_to_Cart extends AppCompatActivity {
 
     private ImageView images;
     private TextView prices,flavours;
+
+    public  String flavour,price,quantity;
 
     Button addtocart;
     Database mdatabase;
@@ -82,25 +86,12 @@ public class Add_to_Cart extends AppCompatActivity {
         prices=(TextView)findViewById(R.id.add_to_cart_price);
         quantities=(EditText)findViewById(R.id.quantity_cart);
 
-//        Spinner dropdown = (Spinner) findViewById(R.id.spinner_area_cart);
-//        quantity_no = new String[]{"1","2","3","4","5","6","7","8","9","10"};
-//
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, quantity_no);
-//
-//        dropdown.setAdapter(adapter);
-//
-
-        // oldprices=(TextView)findViewById(R.id.add_to_cart_old_price);
-        //oldprices.setPaintFlags(oldprices.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
-
-
         Intent intent=getIntent();
-        final String flavour=intent.getStringExtra("flavour_key");
+        final String flavour_key=intent.getStringExtra("flavour_key");
         final String price_no=intent.getStringExtra("price_key");
-     //   final String old_price=intent.getStringExtra("old_price_key");
+
         prices.setText("Rs"+ price_no);
-        //oldprices.setText(old_price);
-        flavours.setText(flavour);
+        flavours.setText(flavour_key);
 
 //this code to import image
 
@@ -119,9 +110,9 @@ public class Add_to_Cart extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                final String flavour = flavours.getText().toString();
-                final String price = price_no;
-                final String quantity = quantities.getText().toString();
+                 flavour = flavours.getText().toString();
+                 price = price_no;
+                 quantity = quantities.getText().toString();
 
                 Drawable drawable = images.getDrawable();
                 Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
@@ -131,16 +122,24 @@ public class Add_to_Cart extends AppCompatActivity {
 
                 if(quantity.matches("0"))
                 {
-                    Toast.makeText(Add_to_Cart.this, "Quantity = 0 is invalid ", Toast.LENGTH_SHORT).show();
+                   Toast toast =  Toast.makeText(Add_to_Cart.this, "Select quantity ", Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.CENTER,0,0);
+                            toast.show();
                 }
                 else if(quantity.matches("")){
-                    Toast.makeText(Add_to_Cart.this, "Please,fill Quantity", Toast.LENGTH_SHORT).show();
+                   Toast toast = Toast.makeText(Add_to_Cart.this, "Please,fill Quantity", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER,0,0);
+                    toast.show();
                 }
                 else{
+
                     Model model = new Model(flavour, price,quantity,image);
 
                     mdatabase.addModel(model);
-                    Toast.makeText(Add_to_Cart.this, "Added Successfully", Toast.LENGTH_SHORT).show();
+
+                    Toast toast = Toast.makeText(getApplicationContext(),"Added Successfully", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER,0,0);
+                    toast.show();
                 }
 
                 finish();
@@ -150,13 +149,6 @@ public class Add_to_Cart extends AppCompatActivity {
 
     }
 
-
-//    @Override
-//    public void onBackPressed(){
-//        startActivity(getIntent());
-//        super.onBackPressed();
-//
-//    }
 
     //this is code for menu items in app bar/toolbar
     @Override
@@ -183,8 +175,7 @@ public class Add_to_Cart extends AppCompatActivity {
                 return true;
 
             case R.id.inquiry:
-                String phone_no = "9142735862";
-
+                String phone_no = MainActivity.shop_phone_no;
                 if (ActivityCompat.checkSelfPermission(Add_to_Cart.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(Add_to_Cart.this,new String[]
@@ -211,5 +202,6 @@ public class Add_to_Cart extends AppCompatActivity {
 
         }
     }
+
 
 }

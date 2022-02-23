@@ -11,6 +11,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.support.v4.app.INotificationSideChannel;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -29,10 +34,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Cache;
+import com.android.volley.NetworkResponse;
+import com.android.volley.ParseError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.firebase.ui.firestore.CachingSnapshotParser;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -40,7 +56,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.SynchronousQueue;
 
 public class Foodies extends AppCompatActivity {
     private static final int REQUEST_CALL =1 ;
@@ -50,6 +74,9 @@ public class Foodies extends AppCompatActivity {
 
     private FirestoreRecyclerAdapter<Model_Foodies, ViewHolder> adapter;
 
+    ProgressBar progressBar;
+
+    private List<Model_Foodies> cache_list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +84,8 @@ public class Foodies extends AppCompatActivity {
         setContentView(R.layout.activity_foodies);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        progressBar = (ProgressBar)findViewById(R.id.progress_bar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +107,12 @@ public class Foodies extends AppCompatActivity {
 
         new_method();
 
+        progressBar_method();
+
+        load_cache();
     }
+
+
     //this is code for menu items in app bar/toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -137,7 +171,8 @@ public class Foodies extends AppCompatActivity {
     public void new_method() {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
+        recyclerView.setLayoutManager(gridLayoutManager);
 
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
 
@@ -147,10 +182,7 @@ public class Foodies extends AppCompatActivity {
                 .setQuery(query, Model_Foodies.class)
                 .build();
 
-        // main_act_database.addModel(query);
-
         adapter = new FirestoreRecyclerAdapter<Model_Foodies, ViewHolder>(options) {
-
 
             @Override
             public void onError(FirebaseFirestoreException e) {
@@ -158,6 +190,7 @@ public class Foodies extends AppCompatActivity {
                 // your UI to display an error message to the user.
                 // ...
 
+                e.printStackTrace();
             }
 
             @Override
@@ -182,52 +215,61 @@ public class Foodies extends AppCompatActivity {
                     viewHolderOld.name.setText(model.getName());
                     viewHolderOld.new_price.setText("Rs" + model.getNew_price());
                     viewHolderOld.old_price.setText("Rs" + model.getOld_price());
-                    viewHolderOld.image.setImageResource(R.mipmap.sorry);
+
+                    Glide.with(Foodies.this).load("https://media0.giphy.com/media/Y21AQ2KmCKhzCI50DU/giphy.gif?cid=6c09b952i9hjkjz2w7471l3zcidwj4g58vnn1zkxyoypczg2&rid=giphy.gif").into(viewHolderOld.image);
+
+                  //  viewHolderOld.image.setImageResource(R.mipmap.sorry);
                     viewHolderOld.description.setText("Out of Stock");
-                    viewHolderOld.button.setVisibility(View.INVISIBLE);
+                   // viewHolderOld.button.setVisibility(View.INVISIBLE);
+                    viewHolderOld.itemView.setClickable(false);
                     viewHolderOld.tag.setVisibility(View.INVISIBLE);
                     viewHolderOld.discount.setText(divide + "% OFF");
                     
                 }
-                else{
+                else {
+
+                  //  viewHolderOld.button.setVisibility(View.VISIBLE);
 
                     viewHolderOld.old_price.setPaintFlags(viewHolderOld.old_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-                viewHolderOld.description.setText(model.getDescription());
-                viewHolderOld.name.setText(model.getName());
-                viewHolderOld.new_price.setText("Rs" + model.getNew_price());
-                viewHolderOld.old_price.setText("Rs" + model.getOld_price());
-                viewHolderOld.tag.setText(model.getTag());
+                    viewHolderOld.description.setText(model.getDescription());
+                    viewHolderOld.name.setText(model.getName());
+                    viewHolderOld.new_price.setText("Rs" + model.getNew_price());
+                    viewHolderOld.old_price.setText("Rs" + model.getOld_price());
+                    viewHolderOld.tag.setText(model.getTag());
 
-                Glide.with(viewHolderOld.image.getContext()).load(model.getImage()).into(viewHolderOld.image);
+                    Glide.with(viewHolderOld.image.getContext()).load(model.getImage()).placeholder(R.mipmap.loading_img).into(viewHolderOld.image);
 
-                viewHolderOld.discount.setText(divide + "% OFF");
+                    viewHolderOld.discount.setText(divide + "% OFF");
 
-                viewHolderOld.button.setOnTouchListener(btn_touch);
+                    viewHolderOld.timer.setText(model.getTimer());
 
-                viewHolderOld.button.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(Foodies.this, Add_to_Cart.class);
-                        String flavour = model.getName();
-                        String price = model.getNew_price();
-                        intent.putExtra("flavour_key", flavour);
-                        intent.putExtra("price_key", price);
+                  //  viewHolderOld.button.setOnTouchListener(btn_touch);
 
-                        Drawable drawable = viewHolderOld.image.getDrawable();
-                        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                        byte[] b = baos.toByteArray();
-                        intent.putExtra("image_key", b);
-                        startActivity(intent);
-                    }
+                    viewHolderOld.itemView.setOnClickListener(new View.OnClickListener() {
 
-                });
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Foodies.this, Add_to_Cart.class);
+                            String flavour = model.getName();
+                            String price = model.getNew_price();
+                            intent.putExtra("flavour_key", flavour);
+                            intent.putExtra("price_key", price);
 
-            }
+                            Drawable drawable = viewHolderOld.image.getDrawable();
+                            Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                            byte[] b = baos.toByteArray();
+                            intent.putExtra("image_key", b);
+                            startActivity(intent);
+                        }
 
+                    });
+
+
+                }
                 }
 
         };
@@ -238,7 +280,7 @@ public class Foodies extends AppCompatActivity {
     private class ViewHolderOld extends ViewHolder {
         // creating variables for our
         // views of recycler items.
-        private TextView description,name, old_price, new_price,tag,discount;
+        private TextView description,name, old_price, new_price,tag,discount,timer;
         private ImageView image;
         private Button button;
 
@@ -253,10 +295,11 @@ public class Foodies extends AppCompatActivity {
             new_price = itemView.findViewById(R.id.card_foodies_new_price);
             tag = itemView.findViewById(R.id.card_foodies_tag);
             discount = itemView.findViewById(R.id.card_foodies_discount);
+            timer = itemView.findViewById(R.id.card_foodies_count_down);
 
             image = itemView.findViewById(R.id.card_foodies_image);
 
-            button = itemView.findViewById(R.id.card_foodies_button);
+           // button = itemView.findViewById(R.id.card_foodies_button);
         }
 
     }
@@ -277,6 +320,33 @@ public class Foodies extends AppCompatActivity {
     };
 
 
+    public void progressBar_method(){
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        final Handler handler = new Handler();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                }
+                catch (Exception e){
+
+                }
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
+                });
+            }
+        }).start();
+
+    }
+
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -291,6 +361,150 @@ public class Foodies extends AppCompatActivity {
             adapter.stopListening();
         }
     }
+
+    private void load_cache(){
+        String url2 = "http://api.tvmaze.com/singlesearch/shows?q=lost&embed=episodes";
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                url2, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    JSONObject emedded = null;
+                    try {
+                        emedded = response.getJSONObject("_embedded");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    JSONArray episodes = emedded.getJSONArray("episodes");
+                    for (int i = 0; i <episodes.length() ; i++) {
+
+                        JSONObject episode = episodes.getJSONObject(i);
+                        String name = episode.getString("name");
+                        Log.i("Provera Object", name);
+
+//                        JSONObject imaged = episode.getJSONObject("image");
+//                        String image = imaged.getString("medium");
+//                        Log.i("Provera Object", String.valueOf(image));
+
+                        int id = episode.getInt("id");
+                        Log.d("Provera Object", String.valueOf(id));
+                     //   Log.d("Provera","token "+shop_token_id);
+
+                        String image = episode.getString("url");
+                        Log.d("Provera Object", image);
+
+                        String new_price  = episode.getString("new_price");
+                        Log.d("Provera Object", new_price);
+
+                        String old_price = episode.getString("old_price");
+                        Log.d("Provera Object", old_price);
+
+                        String description = episode.getString("description");
+                        Log.d("Provera Object", description);
+
+                        String tag = episode.getString("tag");
+                        Log.d("Provera Object", tag);
+
+                        String timer = episode.getString("timer");
+                        Log.d("Provera Object", timer);
+
+                        String available = episode.getString("available");
+                      //  Log.d("Provera Object", available);
+
+
+
+
+
+                        Model_Foodies model_foodies_item = new Model_Foodies(
+                                description, image, name, new_price, old_price, tag, available, timer
+                        );
+
+                        cache_list.add(model_foodies_item);
+                        adapter.notifyDataSetChanged();
+
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError e) {
+
+                e.printStackTrace();
+            }
+        }){
+            @Override
+            protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+                try {
+                    Cache.Entry cacheEntry = HttpHeaderParser.parseCacheHeaders(response);
+                    if (cacheEntry == null) {
+                        cacheEntry = new Cache.Entry();
+                    }
+                    final long cacheHitButRefreshed = 3 * 60 * 1000; // in 3 minutes cache will be hit, but also refreshed on background
+                    final long cacheExpired = 24 * 60 * 60 * 1000; // in 24 hours this cache entry expires completely
+                    long now = System.currentTimeMillis();
+                    final long softExpire = now + cacheHitButRefreshed;
+                    final long ttl = now + cacheExpired;
+                    cacheEntry.data = response.data;
+                    cacheEntry.softTtl = softExpire;
+                    cacheEntry.ttl = ttl;
+                    String headerValue;
+                    headerValue = response.headers.get("Date");
+                    if (headerValue != null) {
+                        cacheEntry.serverDate = HttpHeaderParser.parseDateAsEpoch(headerValue);
+                    }
+                    headerValue = response.headers.get("Last-Modified");
+                    if (headerValue != null) {
+                        cacheEntry.lastModified = HttpHeaderParser.parseDateAsEpoch(headerValue);
+                    }
+                    cacheEntry.responseHeaders = response.headers;
+                    final String jsonString = new String(response.data,
+                            HttpHeaderParser.parseCharset(response.headers));
+                    return Response.success(new JSONObject(jsonString), cacheEntry);
+                } catch (UnsupportedEncodingException e) {
+                    return Response.error(new ParseError(e));
+                } catch (JSONException e) {
+                    return Response.error(new ParseError(e));
+                }
+            }
+
+            @Override
+            protected void deliverResponse(JSONObject response) {
+                super.deliverResponse(response);
+            }
+
+            @Override
+            public void deliverError(VolleyError error) {
+                super.deliverError(error);
+            }
+
+            @Override
+            protected VolleyError parseNetworkError(VolleyError volleyError) {
+                return super.parseNetworkError(volleyError);
+            }
+        };
+
+        Volley.newRequestQueue(this).add(jsonObjReq);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent backpressed = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(backpressed);
+        finish();
+    }
+
 }
 
 

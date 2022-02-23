@@ -1,20 +1,21 @@
 package com.aditya_verma.foodies;
 
+import android.graphics.ColorSpace;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Model_Foodies {
 
     // variables for storing our image and name.
-    String description,image,name,new_price,old_price,tag,available;
-
+    String description, image, name, new_price, old_price, tag, available, timer;
 
 
     public Model_Foodies() {
         // empty constructor required for firebase.
     }
 
-    public Model_Foodies(String description, String image, String name, String new_price, String old_price, String tag, String available) {
+    public Model_Foodies(String description, String image, String name, String new_price, String old_price, String tag, String available, String timer) {
         this.description = description;
         this.image = image;
         this.name = name;
@@ -22,6 +23,7 @@ public class Model_Foodies {
         this.old_price = old_price;
         this.tag = tag;
         this.available = available;
+        this.timer = timer;
     }
 
     public String getDescription() {
@@ -79,5 +81,18 @@ public class Model_Foodies {
     public void setAvailable(String available) {
         this.available = available;
     }
+
+    public String getTimer() {
+        return timer;
+    }
+
+    public void setTimer(String timer) {
+        this.timer = timer;
+    }
+
+@Override
+    public Model_Foodies clone(){
+        return new Model_Foodies();
 }
 
+}

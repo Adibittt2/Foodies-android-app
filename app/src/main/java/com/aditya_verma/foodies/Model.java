@@ -7,7 +7,7 @@ public class Model {
     public int id;
     public String flavour, price, quantity;
     public byte[] image;
-    public String name, mobile, address;
+    public String name, mobile, address, date;
     public List<String> food_list;
 
 
@@ -26,7 +26,22 @@ public class Model {
         this.image = image;
     }
 
-//this is only for sending data to firebase
+    public Model(int id, String flavour, String price, String quantity, String date) {
+        this.id = id;
+        this.flavour = flavour;
+        this.price = price;
+        this.quantity = quantity;
+        this.date = date;
+    }
+
+    public Model(String flavour, String price, String quantity, String date) {
+        this.flavour = flavour;
+        this.price = price;
+        this.quantity = quantity;
+        this.date = date;
+    }
+
+    //this is only for sending data to firebase
 
 //    public Model(String name, String mobile, String address, List<String> food_list) {
 //        this.name = name;
@@ -99,6 +114,14 @@ public class Model {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public List<String> getFood_list() {

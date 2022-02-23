@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,8 +72,9 @@ public class Feedback extends AppCompatActivity {
 
                 feedback_sending_method();
 
-                Toast.makeText(Feedback.this, "Thank You for Feedback", Toast.LENGTH_SHORT).show();
-            }
+                Toast toast = Toast.makeText(getApplicationContext(),"Thank you for feedback", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER,0,0);
+                toast.show();            }
 
         });
 

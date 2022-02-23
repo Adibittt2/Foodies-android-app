@@ -3,25 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    app:layout_insetEdge="bottom"
-    android:fadingEdgeLength="10dp">
+    android:padding="4dp"
+    android:background="@color/colorPrimaryDark"
+    app:layout_insetEdge="bottom">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:background="@color/colorAccent"
+        android:padding="5dp">
 
     <TextView
         android:id="@+id/card_foodies_tag"
         android:layout_width="wrap_content"
+        android:text="Best Selling"
         android:layout_height="wrap_content"
         android:layout_marginRight="5dp"
-        android:background="@color/colorPrimaryDark"
-        android:layout_toStartOf="@+id/card_foodies_image"/>
+        android:padding="2dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="@color/colorAccent"
+        />
 
     <ImageView
         android:id="@+id/card_foodies_image"
         android:src = "@mipmap/foodies_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="160dp"
+        android:scaleType="fitXY"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true" />
+        android:layout_below="@+id/card_foodies_tag"
+        />
 
 
     <TextView
@@ -48,10 +60,18 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="old_price"
-        android:textSize="20dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/card_foodies_description"/>
 
+        <TextView
+            android:id="@+id/card_foodies_count_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginRight="10dp"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_toStartOf="@+id/card_foodies_new_price"
+            android:layout_below="@+id/card_foodies_old_price"/>
 
 
 
@@ -61,7 +81,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="new_price"
-        android:textSize="20dp"
         android:textColor="@android:color/black"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/card_foodies_old_price"/>
@@ -78,16 +97,18 @@
         android:layout_below="@+id/card_foodies_old_price"/>
 
 
-    <Button
-        android:id="@+id/card_foodies_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add To Cart"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:background="@color/colorPrimary"
-        android:layout_marginHorizontal="10dp"
-        android:layout_below="@+id/card_foodies_new_price"/>
+<!--    <Button-->
+<!--        android:id="@+id/card_foodies_button"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:text="Add To Cart"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:gravity="center"-->
+<!--        android:textColor="@color/colorAccent"-->
+<!--        android:background="@color/colorPrimary"-->
+<!--        android:layout_marginHorizontal="10dp"-->
+<!--        android:layout_below="@+id/card_foodies_new_price"/>-->
 
+    </RelativeLayout>
 
 </RelativeLayout>

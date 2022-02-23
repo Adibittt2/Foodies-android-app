@@ -17,7 +17,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FcmNotificationsSender  {
+public class
+FcmNotificationsSender  {
 
     String userFcmToken;
     String title;
@@ -49,7 +50,7 @@ public class FcmNotificationsSender  {
             JSONObject notiObject = new JSONObject();
             notiObject.put("title", title);
             notiObject.put("body", body);
-            notiObject.put("icon", "foodies_logo"); // enter icon that exists in drawable only
+          //  notiObject.put("icon", "foodies_logo"); // enter icon that exists in drawable only
 
 
             mainObj.put("notification", notiObject);
@@ -64,14 +65,15 @@ public class FcmNotificationsSender  {
                 }
             }, new Response.ErrorListener() {
                 @Override
-                public void onErrorResponse(VolleyError error) {
+                public void onErrorResponse(VolleyError e) {
                     // code run is got error
+
+                    e.printStackTrace();
 
                 }
             }) {
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
-
 
                     Map<String, String> header = new HashMap<>();
                     header.put("content-type", "application/json");

@@ -2,11 +2,10 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="0dp"
-    card_view:cardElevation="2dp"
+    card_view:cardElevation="0dp"
+    card_view:cardCornerRadius="5dp"
     card_view:cardUseCompatPadding="true">
 
     <LinearLayout
@@ -14,36 +13,37 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/colorPrimary"
-        android:padding="10dp">
+        android:padding="5dp">
 
         <ImageView
                 android:id="@+id/image_for_card"
                 android:src="@drawable/ic_baseline_shopping_cart_24"
                 android:layout_width="100dp"
-                android:layout_height="100dp"/>
+                android:layout_height="70dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="5dp"
             android:gravity="left"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/flavour"
-                android:layout_width="wrap_content"
+                android:layout_width = "170dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="2dp"
                 android:text="flavour"
                 android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="2dp">
 
                 <TextView
                     android:id="@+id/price"
@@ -52,15 +52,20 @@
                     android:layout_below="@+id/flavour"
                     android:layout_marginBottom="5dp"
                     android:text="price"
+                    android:layout_marginRight="20dp"
                     android:textSize="15dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"/>
+
 
             <TextView
                 android:id="@+id/quantity_card_for_cart"
                 android:text="quantity"
+                android:textColor="@color/colorAccent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -68,11 +73,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="right"
-            android:layout_marginRight="50dp">
+            android:layout_marginRight="3dp">
 
             <ImageView
                 android:id="@+id/delete_option"
-                android:layout_width="wrap_content"
+                android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_delete_24" />
 
@@ -82,8 +87,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="price_each"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginBottom="5dp"
+                android:textColor="@color/colorAccent"
                 />
 
         </LinearLayout>

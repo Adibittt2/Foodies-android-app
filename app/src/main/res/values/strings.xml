@@ -1,9 +1,4 @@
-<resources>
-    <string name="app_name">Foodies</string>
-    <string name="notification">notification</string>
-    <string name="search">search</string>
-    <string name="home">home</string>
-    <string name="cart">cart</string>
-    <string name="todo">TODO</string>
-
-</resources>
+<component name="libraryTable">
+    <library name="Gradle: com.google.firebase:firebase-encoders-json:17.1.0@aar">
+        <CLASSES>
+            <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/48642e18d5727c6ce68b1436455b639f/jetified-firebase-encoders-json-17.1.0/jars/classes.

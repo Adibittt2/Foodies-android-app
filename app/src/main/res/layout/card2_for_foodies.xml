@@ -3,23 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="10dp">
+    android:layout_margin="7dp"
+    android:padding="4dp"
+    android:background="@color/colorPrimaryDark"
+    app:layout_insetEdge="bottom">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:padding="10dp">
 
     <TextView
         android:id="@+id/card2_foodies_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="5dp"
-        android:background="@color/colorPrimaryDark"
+        android:padding="2dp"
+        android:textColor="@color/colorPrimaryDark"
         android:text="Best Selling"
         android:layout_toStartOf="@+id/card2_foodies_image"/>
 
     <ImageView
         android:id="@+id/card2_foodies_image"
         android:src = "@mipmap/foodies_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="160dp"
+        android:scaleType="fitXY"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true" />
 
@@ -128,16 +138,8 @@
             />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/card2_foodies_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add To Cart"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:background="@color/colorPrimary"
-        android:layout_marginHorizontal="10dp"
-        android:layout_below="@+id/card2_layout_discount"/>
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

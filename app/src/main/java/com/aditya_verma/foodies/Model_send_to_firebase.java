@@ -6,12 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Model_send_to_firebase {
-    String name, mobile, address, near_area, location_text, mode_of_payment, total_bill_price, date;
+    String name, mobile, address, near_area, location_text, mode_of_payment, total_bill_price, date, coupon_value, user_token;
     List<String> food_list;
 
-    public Model_send_to_firebase(String name, String mobile, String address, String near_area,
-                                  String location_text, String mode_of_payment, String total_bill_price,
-                                  String date, List<String> food_list) {
+    public Model_send_to_firebase(String name, String mobile, String address, String near_area, String location_text, String mode_of_payment, String total_bill_price, String date, String coupon_value, String user_token, List<String> food_list) {
         this.name = name;
         this.mobile = mobile;
         this.address = address;
@@ -20,9 +18,10 @@ public class Model_send_to_firebase {
         this.mode_of_payment = mode_of_payment;
         this.total_bill_price = total_bill_price;
         this.date = date;
+        this.coupon_value = coupon_value;
+        this.user_token = user_token;
         this.food_list = food_list;
     }
-
 
     public String getName() {
         return name;
@@ -88,6 +87,22 @@ public class Model_send_to_firebase {
         this.date = date;
     }
 
+    public String getCoupon_value() {
+        return coupon_value;
+    }
+
+    public void setCoupon_value(String coupon_value) {
+        this.coupon_value = coupon_value;
+    }
+
+    public String getUser_token() {
+        return user_token;
+    }
+
+    public void setUser_token(String user_token) {
+        this.user_token = user_token;
+    }
+
     public List<String> getFood_list() {
         return food_list;
     }
@@ -95,5 +110,4 @@ public class Model_send_to_firebase {
     public void setFood_list(List<String> food_list) {
         this.food_list = food_list;
     }
-
 }
